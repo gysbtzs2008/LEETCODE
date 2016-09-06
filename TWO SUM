@@ -1,1 +1,9 @@
-
+class Solution(object):
+    def twoSum(self, nums, target):
+        dic={}
+        for i in xrange(len(nums)):
+            if nums[i] not in dic:
+                dic[target-nums[i]]=i  # record difference between nums[i] and target as well as index of nums[i]
+            else:
+                return [dic[nums[i]],i]
+#这个方法的复杂度为O（n),用空间换时间
