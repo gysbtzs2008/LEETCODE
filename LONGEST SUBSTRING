@@ -5,7 +5,7 @@ int lengthOfLongestSubstring(char* s) {
     int startpos = 0;
     int i=0,j;
     int max = 0;
-    char h[256];
+    int h[256];
     for (j=0;j<256;j++){
         h[j]=-1;
     }
