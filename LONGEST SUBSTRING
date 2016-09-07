@@ -1,0 +1,28 @@
+//主要思想还是用空间换时间。引入了一个数组存储每个字符串出现的最后位置。若是字符串出现的位置在当前子字符串初始位置之后，则说明出现了重复。那么存储下当前子
+//字符串的长度，判断其是否比之前的子字符串长
+
+
+int lengthOfLongestSubstring(char* s) {
+    int startpos = 0;
+    int i=0,j;
+    int max = 0;
+    char h[128];
+    for (j=0;j<128;j++){
+        h[j]=-1;
+    }
+    while (*s){
+       if (h[*s]+1>startpos){
+           if (h[*s]+1-startpos>max)
+               max = h[*s]-startpos;
+           startpos ++;
+       }
+       else {
+           if (i-startpos+1>max)
+               max = i-startpos+1;
+       }
+       h[*s]=i;
+       s++;
+       i++;
+    }
+    return max;
+}
