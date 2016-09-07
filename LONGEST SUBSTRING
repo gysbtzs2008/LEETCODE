@@ -25,3 +25,30 @@ int lengthOfLongestSubstring(char* s) {
     }
     return max;
 }
+
+若用python
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        i = 0
+        maxnum = 0
+        startpos = 0
+        dic = {}
+        while(i<len(s)):
+            if s[i] not in dic:
+                dic[s[i]]=i
+                if i+1-startpos > maxnum:
+                    maxnum = i+1-startpos
+            elif dic[s[i]]>=startpos:
+                if i-startpos > maxnum:
+                    maxnum = i-startpos
+                startpos = dic[s[i]]+1
+            else:
+                if i+1-startpos > maxnum:
+                    maxnum = i+1-startpos
+            dic[s[i]]=i
+            i = i+1
+        return maxnum
