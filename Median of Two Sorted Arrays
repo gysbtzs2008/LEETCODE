@@ -48,3 +48,35 @@ class Solution(object):
                     nums.append(nums2[i2])
                     i2 += 1
             return nums[mid]           
+
+## PYTHON 版本2 优化了版本1，使得程序更短
+class Solution(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        m = len(nums1)
+        n = len(nums2)
+        nums = []
+        i=0
+        i1 = 0
+        i2 = 0
+        mid = (m+n)//2
+        for i in range(0,mid+1):
+            if i1 ==m:
+                nums.append(nums2[i2])
+                i2 = i2+1   
+            elif i2 ==n:
+                nums.append(nums1[i1])
+                i1 = i1+1                    
+            elif nums1[i1]<nums2[i2]:
+                nums.append(nums1[i1])
+                i1 = i1+1
+            else:
+                nums.append(nums2[i2])
+                i2= i2+1
+        if ((m+n)%2==0):
+            return (nums[mid]+nums[mid-1])/2.0
+        else:
