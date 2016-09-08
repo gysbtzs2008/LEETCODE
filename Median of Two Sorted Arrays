@@ -1,0 +1,50 @@
+#主要思想用空间换时间。引入一个新的列表m+n来存储两个数组合并后的值。并找到其中的中间数即可
+
+##PYTHON ban'ben版本1
+
+class Solution(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        m = len(nums1)
+        n = len(nums2)
+        nums = []
+        i=0
+        i1 = 0
+        i2 = 0
+        if ((m+n)%2==0):
+            mid = (m+n)//2
+            for i in range(0,mid+1):
+                if i1 ==m:
+                    nums.append(nums2[i2])
+                    i2 = i2+1   
+                elif i2 ==n:
+                    nums.append(nums1[i1])
+                    i1 = i1+1                    
+                elif nums1[i1]<nums2[i2]:
+                    nums.append(nums1[i1])
+                    i1 = i1+1
+                else:
+                    nums.append(nums2[i2])
+                    i2= i2+1
+ 
+            return (nums[mid]+nums[mid-1])/2.0
+        else:
+            mid = (m+n)//2
+            for i in range(0,mid+1):
+                if i1 ==m:
+                    nums.append(nums2[i2])
+                    i2 += 1   
+                elif i2 ==n:
+                    nums.append(nums1[i1])
+                    i1 = i1+1                    
+                elif nums1[i1]<nums2[i2]:
+                    nums.append(nums1[i1])
+                    i1 = i1+1
+                else:
+                    nums.append(nums2[i2])
+                    i2 += 1
+            return nums[mid]           
